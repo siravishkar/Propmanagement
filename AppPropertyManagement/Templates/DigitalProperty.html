@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+{% endfor %}
+
+ {% endif %}
+ <center><h1>View Property</h1></center>
+ <nav class="navbar">
+   <div class="mx-auto" style="width: 340px;margin: 50px auto;">
+  <form class="form-inline" action="/ViewDigitalProperties/" method="POST">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2" type="search" name = "search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
+</nav>
+<style>
+table {
+  border: 1px solid black;
+  table-layout: fixed;
+  width: 250px;
+}
+
+th,
+td {
+  border: 1px solid black;
+  width: 250px;
+  overflow: hidden;
+}
+</style>
+<div class="container">
+    <div class="col-md-12">
+<table class="table table-striped" style="background-color:#FFFFE0;">
+    <thead>
+      <tr> 
+        <th>Property ID</th>
+        <th>Image</th>
+        <th>Type</th>
+         <th>Link</th>
+</tr>
+</thead>
+<tbody>
+{% if searched  %}
+{% for p1 in searches %}
+
+      <tr>
+       <td>{{p1.id}}</td>
+       <td><img src="{{p1.Image.url}}" style="height: 150px;width:50%;"></td>
+        <td>{{p1.Type}}</td>
+        <td width='60%'><a href="{{p1.Link}}">{{p1.Link}}</a></td>
+        <td><a href="/deletedigital/{{p1.id}}"style="display: flow-root;background-color:black;" class="btn btn-primary stretched-link text-center">DELETE</a>
+
+      </tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+  {% for p1 in prop3 %} 
+  <tr>
+    <td>{{p1.id}}</td>
+    <td><img src="{{p1.Image.url}}" style="height: 150px;width:50%;"></td>
+     <td>{{p1.Type}}</td>
+     <td><a href="{{p1.Link}}">{{p1.Link}}</a></td>
+     <td><a href="/deletedigital/{{p1.id}}"style="display: flow-root;background-color:black;" class="btn btn-primary stretched-link text-center">DELETE</a>
+
+   </tr>
+    {% endfor %}
+
+
+</tbody>
+</table>
+</div>
+</div>
+
+{% endif %}
+{% endblock %}
+
+
+
+
+
+
+
+

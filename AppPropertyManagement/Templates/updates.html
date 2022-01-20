@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+{% endfor %}
+
+ {% endif %}
+ <div class="container" style="background:transparent;width: 50%;" >
+            <h3 class="card-title text-center">Update Property</h3>
+
+<form action='/updated/' method="POST" enctype='multipart/form-data' >
+       {% csrf_token %}       
+
+
+{% for p2 in prop3 %}
+<div class="form-row">
+        <div class="col-md-4 "style="margin-bottom: 10px">
+        <label  for="validationTooltip01"> ID</label>
+        <input type='text' id='Pid' name='property_id'  value="{{p2.id}}"  class="Form control"readonly="true"></div>
+        <div class="col-md-4 "style="margin-bottom: 10px">
+                <label for="validationTooltip02">Type</label>
+                <input type='text' id='type' name='type'class="Form control" value="{{p2.Type}}">
+        </div>
+        <div class="col-md-4 "style="margin-bottom: 10px">
+                <label for="validationTooltip02">Sqft</label>
+                <input type='text' id='sqft' name='sqft' size='20' value="{{p2.Sqft}}" required="true">
+        </div>
+</div>
+<div class="form-row">
+        <div class="col-md-4 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip02"> Property Type</label>
+                <input type='text' id='types' name='types' size='20' value="{{p2.Type}}" class="form-control" required="true">
+        </div>
+        <div class="col-md-4 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip01">Area</label>
+                <input type='text' id='area' name='area' size='20' value="{{p2.Area}}" class="form-control" required="true">
+      
+        </div>
+        <div class="col-md-4 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip01">Price</label>
+                <input type="text" class="form-control" name="Price" id="Price"  placeholder="Price" value="{{p2.Price}}" required>
+        </div>
+
+</div>
+        <div class="form-row">
+                <div class="col-md-12 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip01">Address</label>
+                <textarea id='Address' class="form-control" name='Address' rows="5" cols="22">{{p2.Address}}</textarea> 
+        </div>
+</div>
+<div class="form-row">
+    <div class="col-md-12 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Landmark</label>
+       <input type="text" class="form-control" name="Landmark" id="Last_name"  placeholder="" value="{{p2.Landmark}}" required>
+       </div>
+</div>
+<div class="form-row">
+<div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip01">Developer Name</label>
+                <input type="text" class="form-control" name="Developer Name" id="Developer Name"  placeholder="" value="{{p2.DeveloperName}}" required>
+        </div>
+        <div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip02"> Bedroom </label>
+                <input type="text" class="form-control" name="Bedroom" id="Bedroom"  placeholder="Number of Bedrooms" value="{{p2.Bedroom}}" required>
+        </div>
+</div>
+<br>
+<div class="form-row">
+        <div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip01">Bathroom</label>
+                <input type="text" class="form-control" name="Bathroom" id="Bathroom"  placeholder="Number of Bathrooms" value="{{p2.Bathroom}}" required>
+        </div>
+        <div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip02">Furnished </label>
+                <input type="text" class="form-control" name="Furnished" id="Furnished"  placeholder="" value="{{p2.Furnished}}" required>
+        </div>
+</div>
+<br>
+<div class="form-row">
+        <div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip01">Parking</label>
+                  <input type="text" class="form-control" name="Parking" id="Parking"  placeholder="" value="{{p2.Parking}}" required>
+        </div>
+        <div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip02">CCTV </label>
+                 <input type="text" class="form-control" name="CCTV" id="CCTV"  placeholder="" value="{{p2.CCTV}}" required>
+        </div>
+</div>
+<div class="form-row">
+  <div class="col-md-6 "style="margin-bottom: 10px">
+        <label style="color: black"  for="validationTooltip01">Image</label>
+        <img src="{{p2.Image.url}}" style="height:150px;width:150;">
+        </div>
+        <div class="col-md-6"><br>
+  <input type="file" name="Image" class="btn btn-primary" required="true"></button>
+  <br>
+  <button type="submit" class="btn btn-primary" >Update</button>
+    <br>
+</div>
+</div>
+<center>
+<!--div class="col-md-12">
+<button type="submit" class="btn btn-primary">Update</button>
+</div-->
+</center>       
+</center>
+</div>
+</div>
+</div>
+{% endfor %}
+</table>
+</form>
+</div>
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+

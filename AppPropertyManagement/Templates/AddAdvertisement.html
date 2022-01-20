@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+{% endfor %}
+
+ {% endif %}
+<div class="container" style="background:transparent;width: 50%;" >
+ <form class="form-horizontal" action='/AddAdvertisement/'  method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <center>
+  <div>
+    <h2 style="color: black">Add Advertisement</h2>
+    <hr>
+  </div>
+  </center> 
+
+  <center>
+<div class="form-row">
+        <div class="col-md-12 "style="margin-bottom: 10px">
+        <label style="color: black"  for="validationTooltip01">Name</label>
+        <input type='text' id='name' name='name'  value=""  class="Form control" required="true"></div>
+<div class="col-md-12"><br>
+<input type="file" name="filebutton" class="btn btn-primary"></button>
+<br>
+<center>
+<div class="col-md-12">
+<button type="submit" class="btn btn-primary">ADD</button>
+</div>
+</center>    
+</div>
+</center>       
+
+</div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {% endblock %}

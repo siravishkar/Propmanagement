@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+{% endfor %}
+
+ {% endif %}
+ <div class="container" style="background:transparent;width: 50%;" >
+ <form class="form-horizontal" action='/AddDigitalProperty/'  method="POST" id="signup-form" enctype="multipart/form-data">
+  {% csrf_token %}
+  <center>
+  <div>
+    <h2 style="color: black">Add Property</h2>
+    <hr>
+  </div>
+  </center> 
+  <div class="form-row">
+    <div class="col-md-4 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01"> Type</label>
+       <select name="type" id="type" class="form-control" autofocus required>
+                       <option value="select">Select Type</option>
+                       <option value="Flat">Flat</option>
+                       <option value="Houses">Houses</option>
+                       <option value="Bunglow">Bunglow</option>
+                       <option value="Office Space">Office Space</option>
+                   </select>
+           </div>
+</div>
+<br>
+<div class="form-row">
+    <div class="col-md-12 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Link</label>
+      <input type="url" class="form-control" name="link" id="link"  placeholder="" value="" required>
+</div>
+<br>
+
+
+<center>
+
+    <div class="col-md-12"><br>
+  <input type="file" name="Image" class="btn btn-primary"></button>
+    <br>
+</div>
+</center>       
+<center>
+<div class="col-md-12">
+<button type="submit" class="btn btn-primary">ADD</button>
+</div>
+</center>       
+</center>
+<br>
+</form>
+<br>
+</div>
+<br>
+<br>
+
+
+</div>
+ 
+
+{% endblock %}

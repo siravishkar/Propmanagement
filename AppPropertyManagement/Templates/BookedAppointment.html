@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+{% endfor %}
+
+ {% endif %}
+<div class="container">
+    <div class="col-md-12">
+<center><h1>Booked Appointments</h1></center>
+<table class="table table-striped" style="background-color:#FFFFE0;">
+    <thead>
+      <tr> 
+        <th>Customer ID</th>
+        <th>Property ID</th>
+         <th>Area</th>
+        <th>Price</th>
+         <th>Date</th>
+</tr>
+</thead>
+<tbody>
+{% for b1 in booked %}  
+      <tr>
+       <td>{{b1.User_ID}}</td>
+        <td>{{b1.Property_ID}}</td>
+       <td>{{b1.Area}}</td>
+        <td>{{b1.Price}}</td>
+        <td>{{b1.Date}}</td>
+      </tr>
+    {% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+
+
+
+ {% endblock %}

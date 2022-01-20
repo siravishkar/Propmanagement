@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+{% endfor %}
+
+ {% endif %}
+ <center><h1>Advertisement</h1></center>
+<div class="container" id="product-section">
+<div class="row">
+{% for p in ad %}
+<div class="col-md-12">
+        <div class="card" style="padding: 2%;margin:2%;background-color: white">
+                <img class="card-img-top "src="{{p.AdsImage.url}}" alt="Card image" style="height: 300px;width:100%;">
+        </div>
+</div>
+
+{% endfor %}
+
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+{% endfor %}
+
+ {% endif %}
+
+<nav class="navbar">
+  <li ><a href="{% url 'ViewDigitalProperties' %}">View Digital Property</a></li>
+  <div class="mx-auto" style="width: 300px;margin: 50px auto;">
+  <form class="form-inline" action="/ViewProperty/" method="POST">
+    {% csrf_token %}
+    <input class="form-control mr-sm-2" type="search" name = "search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</div>
+</nav>
+{% if searched  %}
+{% for or in searches %}
+<div class="col-md-3">
+  <div class="card" style="padding: 2%;margin:2%;background-color: white">
+    <img class="card-img-top " src="{{or.Image.url}}" alt="Card image" style="height: 250px;width:100%;">
+    <div class="card-body">
+      <p hidden name="Pid">{{or.id}}</p>
+      <center><h3 class="card-title" style="height: 30px"><span class="label label-info">{{or.Type }}</span></h3></center>
+      <p style="font-size: medium;font-weight: bold;height: 30px" class="card-text ">Price: {{or.Price}}</p>
+      <p style="font-size: medium;font-weight: bold;height: 30px" class="card-text ">Sqft: {{or.Sqft}} sqfts</p>
+      <p style="font-size: medium;font-weight: bold;height: 30px" class="card-text ">Area: {{or.Area}}</p>
+      <p hidden style="font-size: small;height: 30px" class="card-text ">{{or.PropertyType}}</p>
+      <a href="/Propertydetails/{{ or.id }}"style="display: flow-root;background-color: #343a40;" class="btn btn-primary text-center">View Property</a>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+
+{% else %}
+{% for or in showprop %}
+  <div class="col-md-3">
+    <div class="card" style="padding: 2%;margin:2%;background-color: white">
+      <img class="card-img-top " src="{{or.Image.url}}" alt="Card image" style="height: 250px;width:100%;">
+      <div class="card-body">
+      <p hidden name="Pid">{{or.id}}</p>
+      <center><h3 class="card-title" style="height: 30px"><span class="label label-info">{{or.Type }}</span></h3></center>
+      <p style="font-size: medium;font-weight: bold;height: 30px" class="card-text ">Price: {{or.Price}}</p>
+      <p style="font-size: medium;font-weight: bold;height: 30px" class="card-text ">Sqft: {{or.Sqft}} sqfts</p>
+      <p style="font-size: medium;font-weight: bold;height: 30px" class="card-text ">Area: {{or.Area}}</p>
+      <p hidden style="font-size: small;height: 30px" class="card-text ">{{or.PropertyType}}</p>
+      <a href="/Propertydetails/{{ or.id }}"style="display: flow-root;background-color: #343a40;" class="btn btn-primary text-center">View Property</a>
+      </div>
+    </div>
+
+  </div>
+{% endfor %}
+{% endif %}
+ 
+{% if Prop_Type %}
+<center><h1>{{Prop_Type}}</h1></center>
+{% for p in P_Type %}
+<div class="col-md-3">
+  <div class="card" style="padding: 2%;margin:2%;background-color: white">
+    <img class="card-img-top " src="{{p.Image.url}}" alt="Card image" style="height: 250px;width:100%;">
+    <div class="card-body">
+      <p hidden name="Pid">{{p.id}}</p>
+      <center><h3 class="card-title" style="height: 30px"><span class="label label-info">{{p.Type }}</span></h3></center>
+      <p style="font-size: medium;font-weight: bold;height: 30px" class="card-text ">Price: {{p.Price}}</p>
+      <p style="font-size: medium;font-weight: bold;height: 30px" class="card-text ">Sqft: {{p.Sqft}}</p>
+      <p style="font-size: medium;font-weight: bold;height: 30px" class="card-text ">Area: {{p.Area}}</p>
+      <p hidden style="font-size: small;height: 30px" class="card-text ">{{p.PropertyType}}</p>
+      <a href="/Propertydetails/{{ p.id }}"style="display: flow-root;background-color: #343a40;" class="btn btn-primary text-center">View Property</a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+{% endblock %}

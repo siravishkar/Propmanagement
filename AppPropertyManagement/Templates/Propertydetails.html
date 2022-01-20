@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+{% endfor %}
+
+ {% endif %}
+
+<div class="container" id="product-section">
+<div class="row">
+
+{% for p in prop1 %}
+<form action='/FavouriteProperty/' method="POST">
+  {% csrf_token %}
+  <div class="col-md-4">
+   <div class="card" style="padding: 2%;margin:2%;background-color: white">
+   <img class="card-img-top "src="{{p.Image.url}}" alt="Card image" style="height: 400px;width:100%;">
+</div>
+</div>
+  <div class="col-md-7" >
+  <div style="padding: 2%;margin:2%;background-color:white; word spacing:10 px;height: 400px;width:100%;">
+  
+  <input type="hidden" name="Pid" value="{{p.id}}">
+  <div class="form-row">
+    <div class="col-md-4 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01"> Type</label>
+      <input type ="text" name="type" value="{{p.Type}}" readonly="true">
+    </div>
+    <div class="col-md-4 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip02">Sqft</label>
+      <input type ="text" name="sqft" value="{{p.Sqft}}" readonly="true">
+    </div>
+    <div class="col-md-4 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Area</label>
+      <input type ="text" name="area" value="{{p.Area}}" readonly="true">
+    </div>
+  </div>
+    <div class="form-row">
+        <div class="col-md-4"style="margin-bottom: 10px">
+          <label style="color: black"  for="validationTooltip01">Price</label>
+          <input type ="text" name="price" value="{{p.Price}}" readonly="true">
+        </div>
+        <div class="col-md-4"style="margin-bottom: 10px">
+          <label style="color: black"  for="validationTooltip01">Property Type</label>
+          <input type ="text" name="PropertyType" value="{{p.PropertyType}}" readonly="true">
+        </div>
+          <div class="col-md-4"style="margin-bottom: 10px">
+            <label style="color: black"  for="validationTooltip01">Developer Name</label>
+          <input type ="text" name="developer" value="{{p.DeveloperName}}" readonly="true">
+        </div>
+      </div>
+      <div class="form-row">
+       <div class="col-md-4"style="margin-bottom: 10px">
+          <label style="color: black"  for="validationTooltip01">Bedroom</label>
+             <input type ="text" name="bedroom" value="{{p.Bedroom}}" readonly="true">
+        </div>
+         <div class="col-md-4"style="margin-bottom: 10px">
+          <label style="color: black"  for="validationTooltip01">Bathroom</label>
+           <input type ="text" name="bathroom" value="{{p.Bathroom}}" readonly="true">
+        </div>
+     
+         <div class="col-md-4"style="margin-bottom: 10px">
+          <label style="color: black"  for="validationTooltip01">Furnished</label>
+             <input type ="text" name="furnished" value="{{p.Furnished}}" readonly="true">
+        </div>
+          </div>
+      <div class="form-row">
+    <div class="col-md-12 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Address</label>
+      <textarea class="form-control"  name="Address" id="Address"  placeholder="" value="" required readonly="true">{{p.Address}}</textarea>
+</div>
+</div>
+<div class="form-row">
+        <div class="col-md-4"style="margin-bottom: 10px">
+          <label style="color: black"  for="validationTooltip01">Landmark</label>
+          <input type ="text" name="landmark" value="{{p.Landmark}}" readonly="true">
+        </div>
+        <div class="col-md-4"style="margin-bottom: 10px">
+          <label style="color: black"  for="validationTooltip01">Parking</label>
+           <input type ="text" name="parking" value="{{p.Parking}}" readonly="true">
+        </div>
+        <div class="col-md-4 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01"> CCTV</label>
+      <input type ="text" name="cctv" value="{{p.CCTV}}" readonly="true">
+    </div>
+      </div>
+         
+   <div class="form-row">
+    
+</div>
+<br>
+{% if  request.session.UserType == 'User' %} 
+<div class="form-row">
+  <div class="col-md-6 "style="margin-bottom: 10px">
+    <input type ="Submit" value="Add To Favourite" formaction='/FavouriteProperty/' style="display: flow-root;background-color: #008000;" class="btn btn-primary text-center">
+  </div>
+  <div class="col-md-6"style="margin-bottom: 10px">
+    <input type ="Submit" value="Book Appointment" formaction='/BookAppointment/' style="display: flow-root;background-color: #008000;" class="btn btn-primary text-center">
+   </div>
+ </div>
+ {% endif %}
+  </form>
+
+</div>
+  </div>
+</div> 
+{% endfor %}
+</div> 
+{% endblock %}

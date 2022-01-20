@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+{% if messages %}
+        {% for message in messages %}
+         {% if message.tags %}  <script>alert("{{ message }}")</script> {% endif %}
+{% endfor %}
+
+ {% endif %}
+ <div class="container" style="background:transparent;width: 50%;" >
+ <form class="form-horizontal" action='/AddProperty/'  method="POST" id="signup-form" enctype="multipart/form-data">
+  {% csrf_token %}
+  <center>
+  <div>
+    <h2 style="color: black">Add Property</h2>
+    <hr>
+  </div>
+  </center> 
+  <div class="form-row">
+    <div class="col-md-4 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01"> Type</label>
+       <select name="type" id="type" class="form-control" autofocus required>
+                       <option value="select">Select Type</option>
+                       <option value="Flat">Flat</option>
+                       <option value="Houses">Houses</option>
+                       <option value="Bunglow">Bunglow</option>
+                       <option value="Office Space">Office Space</option>
+                   </select>
+           </div>
+           <div class="col-md-4 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip02">Sqft</label>
+                <input type="text" class="form-control" name="sqft" id="SQFT"  placeholder="Area in Sqft" value="" required>
+        </div>
+        <div class="col-md-4 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip02"> Property Type</label>
+                 <select name=" types" id=" types" class="form-control" autofocus required>
+                       <option value="select">Select Property Type</option>
+                       <option value="Buy ">Buy</option>
+                       <option value="Rent">Rent</option>
+                   </select>
+        </div>
+</div>
+<br>
+<div class="form-row">
+    <div class="col-md-12 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Address</label>\
+      <input type="text" class="form-control" name="Address" id="Address"  placeholder="" value="" required>
+</div>
+</div>
+<div class="form-row">
+    <div class="col-md-12 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Landmark</label>
+       <input type="text" class="form-control" name="Landmark" id="Last_name"  placeholder="" value="" required>
+</div>
+</div>
+<div class="form-row">
+<div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip01">Developer Name</label>
+                <input type="text" class="form-control" name="Developer Name" id="Developer Name"  placeholder="" value="" required>
+        </div>
+<div class="form-row">
+    <div class="col-md-6 "style="margin-bottom: 10px">
+      <label style="color: black"  for="validationTooltip01">Area</label>
+       <input type="text" class="form-control" name="area" id="Last_name"  placeholder="" value="" required>
+</div>
+</div>
+ <div class="form-row">
+        <div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip01">Price</label>
+                <input type="text" class="form-control" name="Price" id="Price"  placeholder="Price" value="" required>
+        </div>
+</div>
+<br>
+<div class="form-row">
+        
+        <div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip02"> Bedroom </label>
+                <input type="text" class="form-control" name="Bedroom" id="Bedroom"  placeholder="Number of Bedrooms" value="" required>
+        </div>
+</div>
+<br>
+<div class="form-row">
+        <div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip01">Bathroom</label>
+                <input type="text" class="form-control" name="Bathroom" id="Bathroom"  placeholder="Number of Bathrooms" value="" required>
+        </div>
+        <div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip02">Furnished </label>
+                <select name=" Furnished" id=" Furnished" class="form-control" autofocus required>
+                       <option value="select">Select Furnished Status</option>
+                       <option value="Yes">Yes</option>
+                       <option value="No">No</option>
+                   </select>
+        </div>
+</div>
+<br>
+<div class="form-row">
+        <div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip01">Parking</label>
+                 <select name=" Parking" id=" Parking" class="form-control" autofocus required>
+                       <option value="select">Select Parking Status</option>
+                       <option value="Yes">Yes</option>
+                       <option value="No">No</option>
+                   </select>
+        </div>
+        <div class="col-md-6 "style="margin-bottom: 10px">
+                <label style="color: black"  for="validationTooltip02">CCTV </label>
+                  <select name=" CCTV" id=" CCTV" class="form-control" autofocus required>
+                       <option value="select">Select CCTV Status</option>
+                       <option value="Yes">Yes</option>
+                       <option value="No">No</option>
+                   </select>
+        </div>
+</div>
+<br>
+
+<center>
+
+    <div class="col-md-12"><br>
+  <input type="file" name="Image" class="btn btn-primary"></button>
+    <br>
+</div>
+</center>       
+<center>
+<div class="col-md-12">
+<button type="submit" class="btn btn-primary">ADD</button>
+</div>
+</center>       
+</center>
+<br>
+</form>
+<br>
+</div>
+<br>
+<br>
+
+
+</div>
+ 
+
+{% endblock %}
